@@ -21,6 +21,6 @@
   },
   "homepage": "https://github.com/charlyautomatiza/starter-cypress#readme",
   "devDependencies": {
-    "cypress": "^9.5.0"
+    "cypress": "^9.5.4"
   }
 }
