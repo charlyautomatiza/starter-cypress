@@ -4,3 +4,26 @@ cypress/videos
 cypress/downloads
 cypress/screenshots
 
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# TypeScript
+*.tsbuildinfo
+
+# Reports
+mochawesome-report
+cypress/reports
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea
+.vscode
+*.swp
+*.swo
+*~
+

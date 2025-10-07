@@ -1,0 +1,28 @@
+{
+  "users": [
+    {
+      "username": "tomsmith",
+      "password": "SuperSecretPassword!",
+      "role": "admin"
+    },
+    {
+      "username": "testuser1",
+      "password": "TestPass123!",
+      "role": "user"
+    }
+  ],
+  "apiEndpoints": {
+    "login": "/login",
+    "logout": "/logout",
+    "posts": "/posts",
+    "users": "/users"
+  },
+  "selectors": {
+    "loginForm": {
+      "username": "#username",
+      "password": "#password",
+      "submitButton": "[type='submit']",
+      "errorMessage": "#flash"
+    }
+  }
+}
