@@ -15,6 +15,8 @@
     "cypress:update": "npx cypress cache prune && npm update cypress",
     "cypress:report": "node ./scripts/generate-report.js",
     "browsers:update": "npx browserslist@latest --update-db",
+    "deps:check": "npm outdated",
+    "deps:update": "npm update",
     "lint": "eslint . --ext .js,.ts",
     "lint:fix": "eslint . --ext .js,.ts --fix",
     "format": "prettier --write \"**/*.{js,ts,json,md}\"",
