@@ -37,10 +37,6 @@ jobs:
   cypress-chrome:
     runs-on: ubuntu-latest
     needs: code-quality
-    strategy:
-      fail-fast: false
-      matrix:
-        containers: [1, 2]
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -56,8 +52,10 @@ jobs:
         with:
           browser: chrome
           record: false
-          parallel: true
-          group: 'E2E - Chrome'
+          spec: |
+            cypress/e2e/0-internet-guinea/**/*.cy.js
+            cypress/e2e/1-pom-examples/**/*.cy.ts
+            cypress/e2e/2-api-examples/**/*.cy.ts
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
 
@@ -65,7 +63,7 @@ jobs:
         uses: actions/upload-artifact@v4
         if: failure()
         with:
-          name: cypress-screenshots-chrome-${{ matrix.containers }}
+          name: cypress-screenshots-chrome
           path: cypress/screenshots
           if-no-files-found: ignore
 
@@ -73,16 +71,8 @@ jobs:
         uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: cypress-videos-chrome-${{ matrix.containers }}
+          name: cypress-videos-chrome
           path: cypress/videos
-          if-no-files-found: ignore
-
-      - name: Upload test reports
-        uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: cypress-reports-chrome-${{ matrix.containers }}
-          path: cypress/reports
           if-no-files-found: ignore
 
   # E2E tests on Firefox
@@ -104,7 +94,9 @@ jobs:
         with:
           browser: firefox
           record: false
-          group: 'E2E - Firefox'
+          spec: |
+            cypress/e2e/0-internet-guinea/**/*.cy.js
+            cypress/e2e/1-pom-examples/**/*.cy.ts
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
 
@@ -143,7 +135,9 @@ jobs:
         with:
           browser: edge
           record: false
-          group: 'E2E - Edge'
+          spec: |
+            cypress/e2e/0-internet-guinea/**/*.cy.js
+            cypress/e2e/1-pom-examples/**/*.cy.ts
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
 

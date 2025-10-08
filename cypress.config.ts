@@ -34,15 +34,20 @@ export default defineConfig({
       // These can be overridden via .env file or command line
     },
   },
-  reporter: 'mochawesome',
-  reporterOptions: {
-    reportDir: 'cypress/reports/mochawesome',
-    overwrite: false,
-    html: true,
-    json: true,
-    charts: true,
-    reportPageTitle: 'Cypress Test Report',
-    embeddedScreenshots: true,
-    inlineAssets: true,
-  },
+  // Only use mochawesome reporter when not in CI (CI uses cypress-io/github-action reporter)
+  ...(process.env.CI
+    ? {}
+    : {
+        reporter: 'mochawesome',
+        reporterOptions: {
+          reportDir: 'cypress/reports/mochawesome',
+          overwrite: false,
+          html: true,
+          json: true,
+          charts: true,
+          reportPageTitle: 'Cypress Test Report',
+          embeddedScreenshots: true,
+          inlineAssets: true,
+        },
+      }),
 });
