@@ -14,6 +14,7 @@ Thank you for considering contributing to this project! 🎉
 ### Before Committing
 
 The project uses Husky to run pre-commit hooks that check:
+
 - Code linting (ESLint)
 - Code formatting (Prettier)
 - TypeScript type checking
@@ -70,6 +71,7 @@ npm run cypress:run:edge       # Run tests in Edge
 ## Questions?
 
 Feel free to open an issue or reach out to the maintainer on:
+
 - [Twitch](https://www.twitch.tv/charlyautomatiza)
 - [Discord](https://discord.gg/wwM9GwxmRZ)
 - [Twitter](http://twitter.com/char_automatiza)

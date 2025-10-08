@@ -1,9 +1,11 @@
 # Pull Request
 
 ## Description
+
 <!-- Provide a brief description of your changes -->
 
 ## Type of Change
+
 <!-- Mark the relevant option with an "x" -->
 
 - [ ] Bug fix (non-breaking change which fixes an issue)
@@ -14,16 +16,21 @@
 - [ ] Test improvement
 
 ## Related Issue
+
 <!-- If this PR addresses an issue, link it here -->
+
 Fixes #(issue number)
 
 ## Changes Made
+
 <!-- List the changes you've made -->
-- 
-- 
-- 
+
+-
+-
+-
 
 ## Testing
+
 <!-- Describe the tests you ran to verify your changes -->
 
 - [ ] All existing tests pass
@@ -33,6 +40,7 @@ Fixes #(issue number)
 - [ ] Tested on Edge
 
 ## Checklist
+
 <!-- Mark completed items with an "x" -->
 
 - [ ] My code follows the project's code style
@@ -45,7 +53,9 @@ Fixes #(issue number)
 - [ ] Any dependent changes have been merged and published
 
 ## Screenshots (if applicable)
+
 <!-- Add screenshots to help explain your changes -->
 
 ## Additional Notes
+
 <!-- Add any additional notes or context about the PR here -->

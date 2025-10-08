@@ -35,7 +35,7 @@ before(() => {
   cy.log('Starting test suite');
 });
 
-// Global after hook  
+// Global after hook
 after(() => {
   cy.log('Test suite completed');
 });
@@ -48,11 +48,11 @@ beforeEach(() => {
 });
 
 // Handle uncaught exceptions
-Cypress.on('uncaught:exception', (err, runnable) => {
+Cypress.on('uncaught:exception', (err) => {
   // Returning false here prevents Cypress from failing the test
   // You can add custom logic to handle specific exceptions
   console.error('Uncaught exception:', err.message);
-  
+
   // Don't fail tests on uncaught exceptions from the application
   // This is useful for external sites that might have their own errors
   return false;

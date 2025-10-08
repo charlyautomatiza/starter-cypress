@@ -7,13 +7,16 @@ Common issues and solutions for the Cypress Starter Project.
 ### Problem: `npm install` fails
 
 **Symptom:**
+
 ```
 npm ERR! code ERESOLVE
 npm ERR! ERESOLVE unable to resolve dependency tree
 ```
 
 **Solutions:**
+
 1. Clear npm cache:
+
    ```bash
    npm cache clean --force
    rm -rf node_modules package-lock.json
@@ -21,6 +24,7 @@ npm ERR! ERESOLVE unable to resolve dependency tree
    ```
 
 2. Use correct Node.js version:
+
    ```bash
    node --version  # Should be v20+
    nvm use 20      # If using nvm
@@ -34,13 +38,16 @@ npm ERR! ERESOLVE unable to resolve dependency tree
 ### Problem: Cypress binary won't install
 
 **Symptom:**
+
 ```
 The Cypress App could not be downloaded.
 ```
 
 **Solutions:**
+
 1. Check network connectivity
 2. Set proxy if needed:
+
    ```bash
    export HTTP_PROXY=http://proxy.company.com:8080
    export HTTPS_PROXY=http://proxy.company.com:8080
@@ -57,18 +64,22 @@ The Cypress App could not be downloaded.
 ### Problem: TypeScript errors in tests
 
 **Symptom:**
+
 ```
 error TS2304: Cannot find name 'cy'
 error TS2304: Cannot find name 'Cypress'
 ```
 
 **Solutions:**
+
 1. Add reference comment at top of file:
+
    ```typescript
    /// <reference types="cypress" />
    ```
 
 2. Check tsconfig.json includes cypress types:
+
    ```json
    {
      "compilerOptions": {
@@ -82,12 +93,15 @@ error TS2304: Cannot find name 'Cypress'
 ### Problem: Import errors
 
 **Symptom:**
+
 ```
 error TS2307: Cannot find module '@pages/LoginPage'
 ```
 
 **Solutions:**
+
 1. Check tsconfig.json paths:
+
    ```json
    {
      "compilerOptions": {
@@ -100,7 +114,7 @@ error TS2307: Cannot find module '@pages/LoginPage'
 
 2. Use relative imports instead:
    ```typescript
-   import { LoginPage } from '../../pages/LoginPage'
+   import { LoginPage } from '../../pages/LoginPage';
    ```
 
 ## ESLint Issues
@@ -108,13 +122,16 @@ error TS2307: Cannot find module '@pages/LoginPage'
 ### Problem: ESLint errors on startup
 
 **Symptom:**
+
 ```
 Error: Could not find config file
 ```
 
 **Solutions:**
+
 1. Check eslint.config.mjs exists
 2. Install ESLint dependencies:
+
    ```bash
    npm install --save-dev eslint @eslint/js typescript-eslint
    ```
@@ -127,12 +144,14 @@ Error: Could not find config file
 ### Problem: `cy` is not defined
 
 **Symptom:**
+
 ```
 error  'cy' is not defined  no-undef
 ```
 
 **Solution:**
 Add to eslint.config.mjs:
+
 ```javascript
 {
   languageOptions: {
@@ -149,14 +168,17 @@ Add to eslint.config.mjs:
 ### Problem: Tests won't run
 
 **Symptom:**
+
 ```
 No specs found
 ```
 
 **Solutions:**
+
 1. Check spec pattern in cypress.config.ts:
+
    ```typescript
-   specPattern: 'cypress/e2e/**/*.cy.{js,ts}'
+   specPattern: 'cypress/e2e/**/*.cy.{js,ts}';
    ```
 
 2. Ensure test files have correct extension:
@@ -170,12 +192,15 @@ No specs found
 ### Problem: Browser doesn't launch
 
 **Symptom:**
+
 ```
 Browser 'chrome' not found
 ```
 
 **Solutions:**
+
 1. List available browsers:
+
    ```bash
    npx cypress info
    ```
@@ -191,20 +216,24 @@ Browser 'chrome' not found
 ### Problem: Tests timeout
 
 **Symptom:**
+
 ```
 Timed out retrying after 4000ms
 ```
 
 **Solutions:**
+
 1. Increase timeout in cypress.config.ts:
+
    ```typescript
    defaultCommandTimeout: 10000,
    pageLoadTimeout: 60000,
    ```
 
 2. Or in individual test:
+
    ```typescript
-   cy.get('#element', { timeout: 10000 })
+   cy.get('#element', { timeout: 10000 });
    ```
 
 3. Check network speed/stability
@@ -214,17 +243,21 @@ Timed out retrying after 4000ms
 ### Problem: Docker build fails
 
 **Symptom:**
+
 ```
 ERROR: failed to solve
 ```
 
 **Solutions:**
+
 1. Check Docker is running:
+
    ```bash
    docker ps
    ```
 
 2. Rebuild without cache:
+
    ```bash
    docker-compose build --no-cache
    ```
@@ -237,12 +270,15 @@ ERROR: failed to solve
 ### Problem: Container won't start
 
 **Symptom:**
+
 ```
 Error: Cannot find module 'cypress'
 ```
 
 **Solutions:**
+
 1. Rebuild containers:
+
    ```bash
    docker-compose down
    docker-compose up --build
@@ -258,17 +294,21 @@ Error: Cannot find module 'cypress'
 ### Problem: GitHub Actions fails
 
 **Symptom:**
+
 ```
 cypress-run job failed
 ```
 
 **Solutions:**
+
 1. Check workflow syntax:
+
    ```bash
    cat .github/workflows/ci.yml
    ```
 
 2. Verify Node.js version in workflow:
+
    ```yaml
    - uses: actions/setup-node@v4
      with:
@@ -288,19 +328,22 @@ cypress-run job failed
 ### Problem: Tests pass locally but fail in CI
 
 **Solutions:**
+
 1. Check viewport sizes match:
+
    ```typescript
-   cy.viewport(1280, 720)  // In tests
+   cy.viewport(1280, 720); // In tests
    ```
 
 2. Add wait for elements:
+
    ```typescript
-   cy.get('#element').should('be.visible')
+   cy.get('#element').should('be.visible');
    ```
 
 3. Disable video in CI to save resources:
    ```typescript
-   video: process.env.CI ? false : true
+   video: process.env.CI ? false : true;
    ```
 
 ## Reporting Issues
@@ -308,12 +351,15 @@ cypress-run job failed
 ### Problem: Mochawesome report not generated
 
 **Symptom:**
+
 ```
 Cannot find mochawesome JSON files
 ```
 
 **Solutions:**
+
 1. Check reporter config in cypress.config.ts:
+
    ```typescript
    reporter: 'mochawesome',
    reporterOptions: {
@@ -322,6 +368,7 @@ Cannot find mochawesome JSON files
    ```
 
 2. Run tests first:
+
    ```bash
    npm run cypress:run:chrome
    npm run cypress:report
@@ -338,9 +385,11 @@ Cannot find mochawesome JSON files
 No screenshots in `cypress/screenshots/`
 
 **Solutions:**
+
 1. Enable in config:
+
    ```typescript
-   screenshotOnRunFailure: true
+   screenshotOnRunFailure: true;
    ```
 
 2. Check .gitignore doesn't exclude screenshots:
@@ -353,12 +402,15 @@ No screenshots in `cypress/screenshots/`
 ### Problem: Pre-commit hook fails
 
 **Symptom:**
+
 ```
 .husky/pre-commit: Permission denied
 ```
 
 **Solutions:**
+
 1. Make hook executable:
+
    ```bash
    chmod +x .husky/pre-commit
    ```
@@ -371,7 +423,9 @@ No screenshots in `cypress/screenshots/`
 ### Problem: Hook takes too long
 
 **Solutions:**
+
 1. Reduce checks in .husky/pre-commit:
+
    ```bash
    #!/usr/bin/env sh
    npm run lint:fix  # Only lint, skip format check
@@ -387,17 +441,21 @@ No screenshots in `cypress/screenshots/`
 ### Problem: Page object methods not recognized
 
 **Symptom:**
+
 ```
 Property 'login' does not exist on type 'LoginPage'
 ```
 
 **Solutions:**
+
 1. Check import:
+
    ```typescript
-   import { LoginPage } from '../../pages/LoginPage'
+   import { LoginPage } from '../../pages/LoginPage';
    ```
 
 2. Verify method exists in class:
+
    ```typescript
    export class LoginPage extends BasePage {
      login(username: string, password: string) { ... }
@@ -411,17 +469,21 @@ Property 'login' does not exist on type 'LoginPage'
 ### Problem: Tests run slowly
 
 **Solutions:**
+
 1. Run in headless mode:
+
    ```bash
    npm run cypress:run:chrome  # Instead of cypress:run:headed
    ```
 
 2. Disable video:
+
    ```typescript
-   video: false  // In cypress.config.ts
+   video: false; // In cypress.config.ts
    ```
 
 3. Use parallel execution in CI:
+
    ```yaml
    strategy:
      matrix:

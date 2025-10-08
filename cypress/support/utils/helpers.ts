@@ -6,7 +6,9 @@
  * Generate random string
  */
 export const randomString = (length: number = 10): string => {
-  return Math.random().toString(36).substring(2, length + 2);
+  return Math.random()
+    .toString(36)
+    .substring(2, length + 2);
 };
 
 /**
@@ -43,7 +45,7 @@ export const waitForCondition = (
 ): Promise<void> => {
   return new Promise((resolve, reject) => {
     const startTime = Date.now();
-    
+
     const checkCondition = () => {
       if (conditionFn()) {
         resolve();
@@ -53,7 +55,7 @@ export const waitForCondition = (
         setTimeout(checkCondition, interval);
       }
     };
-    
+
     checkCondition();
   });
 };
@@ -90,7 +92,7 @@ export const retry = async <T>(
     return await fn();
   } catch (error) {
     if (retries === 0) throw error;
-    await new Promise(resolve => setTimeout(resolve, delay));
+    await new Promise((resolve) => setTimeout(resolve, delay));
     return retry(fn, retries - 1, delay);
   }
 };

@@ -1,12 +1,17 @@
 /// <reference types="cypress" />
 
-import { randomEmail, randomString, generateTestUser, formatDate } from '../../support/utils/helpers';
+import {
+  randomEmail,
+  randomString,
+  generateTestUser,
+  formatDate,
+} from '../../support/utils/helpers';
 import { get, post, validateResponse } from '../../support/utils/api-helpers';
 
 describe('Using Utility Functions', () => {
   it('should generate random test data', () => {
     const user = generateTestUser();
-    
+
     cy.log('Generated User:', user);
     expect(user).to.have.property('username');
     expect(user).to.have.property('email');
@@ -17,10 +22,10 @@ describe('Using Utility Functions', () => {
   it('should use random strings for unique data', () => {
     const uniqueId = randomString(15);
     const email = randomEmail('example.com');
-    
+
     cy.log(`Unique ID: ${uniqueId}`);
     cy.log(`Email: ${email}`);
-    
+
     expect(uniqueId).to.have.length(15);
     expect(email).to.include('@example.com');
   });
@@ -28,10 +33,10 @@ describe('Using Utility Functions', () => {
   it('should format dates consistently', () => {
     const today = formatDate();
     const customDate = formatDate(new Date('2025-01-01'));
-    
+
     cy.log(`Today: ${today}`);
     cy.log(`Custom Date: ${customDate}`);
-    
+
     expect(today).to.match(/^\d{4}-\d{2}-\d{2}$/);
     expect(customDate).to.eq('2025-01-01');
   });
@@ -69,7 +74,7 @@ describe('Using Utility Functions', () => {
     cy.visit('https://the-internet.herokuapp.com/login');
     cy.get('#username').type(testUser.username);
     cy.get('#password').type(testUser.password);
-    
+
     cy.log(`Tested with user: ${testUser.username}`);
   });
 });
@@ -85,11 +90,12 @@ describe('Advanced Utility Usage', () => {
 
     cy.wrap(testData).as('testData');
 
-    cy.get('@testData').then((data: any) => {
-      cy.log('Complete Test Data:', data);
-      expect(data.user.email).to.include('@');
-      expect(data.timestamp).to.match(/^\d{4}-\d{2}-\d{2}$/);
-      expect(data.sessionId).to.have.length(20);
+    cy.get('@testData').then((data: unknown) => {
+      const typedData = data as typeof testData;
+      cy.log('Complete Test Data:', typedData);
+      expect(typedData.user.email).to.include('@');
+      expect(typedData.timestamp).to.match(/^\d{4}-\d{2}-\d{2}$/);
+      expect(typedData.sessionId).to.have.length(20);
     });
   });
 });

@@ -74,31 +74,37 @@ npm run cypress:open
 ### Run tests in different browsers
 
 #### Chrome (Headless)
+
 ```bash
 npm run cypress:run:chrome
 ```
 
 #### Chrome (Headed - with UI)
+
 ```bash
 npm run cypress:run:headed
 ```
 
 #### Firefox (Headless)
+
 ```bash
 npm run cypress:run:ff
 ```
 
 #### Edge (Headless)
+
 ```bash
 npm run cypress:run:edge
 ```
 
 #### Electron (Headless)
+
 ```bash
 npm run cypress:run:electron
 ```
 
 #### All browsers (Sequential)
+
 ```bash
 npm run cypress:run:all-headless
 ```
@@ -122,25 +128,33 @@ The report will be available at `mochawesome-report/index.html`
 ## 🧪 Test Types & Examples
 
 ### E2E Tests with Page Object Model
+
 Located in `cypress/e2e/1-pom-examples/`
+
 - Structured page classes
 - Reusable methods
 - Type-safe selectors
 
 ### API Testing
+
 Located in `cypress/e2e/2-api-examples/`
+
 - GET, POST, PUT, DELETE requests
 - Response validation
 - Error handling
 
 ### Accessibility Testing
+
 Located in `cypress/e2e/3-accessibility/`
+
 - WCAG 2.0/2.1 compliance checks
 - Element-specific tests
 - Multi-page audits
 
 ### Visual Regression Testing
+
 Located in `cypress/e2e/4-visual-regression/`
+
 - Screenshot comparison
 - Multi-viewport testing
 - Baseline management

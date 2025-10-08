@@ -16,15 +16,11 @@ describe('Login Page - Page Object Model', () => {
   });
 
   it('should login successfully with valid credentials', () => {
-    loginPage
-      .login('tomsmith', 'SuperSecretPassword!')
-      .verifySuccessfulLogin();
+    loginPage.login('tomsmith', 'SuperSecretPassword!').verifySuccessfulLogin();
   });
 
   it('should show error with invalid credentials', () => {
-    loginPage
-      .login('invaliduser', 'invalidpass')
-      .verifyLoginFailure('Your username is invalid!');
+    loginPage.login('invaliduser', 'invalidpass').verifyLoginFailure('Your username is invalid!');
   });
 
   it('should show error with empty username', () => {

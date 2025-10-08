@@ -5,7 +5,7 @@
 export interface ApiRequestOptions {
   method?: string;
   url: string;
-  body?: any;
+  body?: Record<string, unknown>;
   headers?: Record<string, string>;
   failOnStatusCode?: boolean;
   timeout?: number;
@@ -44,14 +44,22 @@ export const get = (url: string, headers?: Record<string, string>) => {
 /**
  * Helper for POST requests
  */
-export const post = (url: string, body: any, headers?: Record<string, string>) => {
+export const post = (
+  url: string,
+  body: Record<string, unknown>,
+  headers?: Record<string, string>
+) => {
   return apiRequest({ method: 'POST', url, body, headers });
 };
 
 /**
  * Helper for PUT requests
  */
-export const put = (url: string, body: any, headers?: Record<string, string>) => {
+export const put = (
+  url: string,
+  body: Record<string, unknown>,
+  headers?: Record<string, string>
+) => {
   return apiRequest({ method: 'PUT', url, body, headers });
 };
 
@@ -65,7 +73,11 @@ export const del = (url: string, headers?: Record<string, string>) => {
 /**
  * Helper for PATCH requests
  */
-export const patch = (url: string, body: any, headers?: Record<string, string>) => {
+export const patch = (
+  url: string,
+  body: Record<string, unknown>,
+  headers?: Record<string, string>
+) => {
   return apiRequest({ method: 'PATCH', url, body, headers });
 };
 
@@ -73,19 +85,19 @@ export const patch = (url: string, body: any, headers?: Record<string, string>) 
  * Validate API response
  */
 export const validateResponse = (
-  response: Cypress.Response<any>,
+  response: Cypress.Response<unknown>,
   expectedStatus: number,
-  schema?: any
+  schema?: Record<string, string>
 ) => {
   expect(response.status).to.eq(expectedStatus);
-  expect(response.body).to.exist;
-  
+  void expect(response.body).to.not.be.undefined;
+
   if (schema) {
     // Simple schema validation
-    Object.keys(schema).forEach(key => {
+    Object.keys(schema).forEach((key) => {
       expect(response.body).to.have.property(key);
     });
   }
-  
+
   return response;
 };

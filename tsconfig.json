@@ -17,14 +17,6 @@
       "@support/*": ["cypress/support/*"]
     }
   },
-  "include": [
-    "cypress/**/*.ts",
-    "cypress.config.ts"
-  ],
-  "exclude": [
-    "node_modules",
-    "cypress/videos",
-    "cypress/screenshots",
-    "cypress/downloads"
-  ]
+  "include": ["cypress/**/*.ts", "cypress.config.ts"],
+  "exclude": ["node_modules", "cypress/videos", "cypress/screenshots", "cypress/downloads"]
 }

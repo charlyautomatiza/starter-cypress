@@ -101,7 +101,9 @@ starter-cypress/
 ## Key Directories
 
 ### 🧪 Test Files (`/cypress/e2e/`)
+
 Organized by test type for easy navigation:
+
 - **0-internet-guinea**: Original JavaScript examples (backward compatibility)
 - **1-pom-examples**: Page Object Model patterns with TypeScript
 - **2-api-examples**: API testing with cy.request()
@@ -110,25 +112,33 @@ Organized by test type for easy navigation:
 - **5-advanced-examples**: Network mocking, utilities, etc.
 
 ### 🏗️ Page Objects (`/cypress/pages/`)
+
 Reusable page classes following POM pattern:
+
 - **BasePage**: Common functionality for all pages
 - **LoginPage**: Example implementation
 - **index.ts**: Convenient exports
 
 ### 🛠️ Support (`/cypress/support/`)
+
 Custom commands and utilities:
+
 - **commands.ts**: Custom Cypress commands
 - **e2e.ts**: Global hooks and setup
 - **utils/**: Helper functions for tests and API calls
 
 ### 📊 Fixtures (`/cypress/fixtures/`)
+
 Test data in JSON format:
+
 - Environment-specific configurations
 - Valid/invalid user credentials
 - Reusable test data
 
 ### ⚙️ Configuration
+
 Multiple config files for different tools:
+
 - **cypress.config.ts**: Main Cypress setup
 - **tsconfig.json**: TypeScript compiler options
 - **eslint.config.mjs**: Linting rules
@@ -136,7 +146,9 @@ Multiple config files for different tools:
 - **docker-compose.yml**: Container orchestration
 
 ### 📝 Documentation
+
 Comprehensive guides for all users:
+
 - **README.md**: Complete project documentation
 - **QUICKSTART.md**: Get started in 5 minutes
 - **MIGRATION.md**: Upgrade from v1.0
@@ -145,7 +157,9 @@ Comprehensive guides for all users:
 - **UPGRADE_SUMMARY.md**: Detailed upgrade info
 
 ### 🔧 DevOps (`/.github/workflows/`)
+
 CI/CD pipelines:
+
 - **ci.yml**: GitHub Actions workflow
   - Multi-browser testing
   - Parallel execution
@@ -163,24 +177,31 @@ CI/CD pipelines:
 ## Quick Navigation
 
 ### Want to write tests?
+
 → Start in `/cypress/e2e/`
 
 ### Need page objects?
+
 → Look in `/cypress/pages/`
 
 ### Need utilities?
+
 → Check `/cypress/support/utils/`
 
 ### Need test data?
+
 → Use `/cypress/fixtures/`
 
 ### Setting up CI/CD?
+
 → Edit `/.github/workflows/ci.yml`
 
 ### Configuring Cypress?
+
 → Modify `/cypress.config.ts`
 
 ### Documentation?
+
 → All `.md` files in root
 
 ---

@@ -5,6 +5,7 @@ Get up and running with Cypress in 5 minutes! 🚀
 ## Prerequisites
 
 Make sure you have these installed:
+
 - Node.js v20+ ([Download](https://nodejs.org/))
 - Git ([Download](https://git-scm.com/))
 - A modern browser (Chrome, Firefox, or Edge)
@@ -25,16 +26,19 @@ npm install
 ### 2. Run Your First Test
 
 #### Open Cypress Test Runner (Interactive)
+
 ```bash
 npm run cypress:open
 ```
 
 This opens the Cypress UI where you can:
+
 - Select a browser
 - Choose tests to run
 - Watch tests execute in real-time
 
 #### Run Tests in Headless Mode
+
 ```bash
 npm run cypress:run:chrome
 ```
@@ -121,26 +125,23 @@ Create a new file: `cypress/e2e/my-test.cy.ts`
 ```typescript
 describe('My First Test', () => {
   it('visits a website', () => {
-    cy.visit('https://example.com')
-    cy.contains('Example Domain').should('be.visible')
-  })
-})
+    cy.visit('https://example.com');
+    cy.contains('Example Domain').should('be.visible');
+  });
+});
 ```
 
 ## Using Page Objects
 
 ```typescript
-import { LoginPage } from '../../pages/LoginPage'
+import { LoginPage } from '../../pages/LoginPage';
 
 describe('Login Test', () => {
   it('should login successfully', () => {
-    const loginPage = new LoginPage()
-    loginPage
-      .visit()
-      .login('username', 'password')
-      .verifySuccessfulLogin()
-  })
-})
+    const loginPage = new LoginPage();
+    loginPage.visit().login('username', 'password').verifySuccessfulLogin();
+  });
+});
 ```
 
 ## Environment Configuration
@@ -152,6 +153,7 @@ cp .env.example .env
 ```
 
 Edit `.env`:
+
 ```env
 CYPRESS_BASE_URL=https://your-app.com
 CYPRESS_ENV=staging

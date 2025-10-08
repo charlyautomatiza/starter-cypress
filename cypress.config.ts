@@ -17,10 +17,11 @@ export default defineConfig({
     },
     setupNodeEvents(on, config) {
       // Import plugins
+      // eslint-disable-next-line @typescript-eslint/no-require-imports
       require('./cypress/plugins/index.js')(on, config);
-      
+
       // Mochawesome reporter configuration
-      on('after:spec', (spec, results) => {
+      on('after:spec', (_spec, _results) => {
         // Custom reporting logic can be added here
       });
 

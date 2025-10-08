@@ -11,6 +11,7 @@
 /// <reference types="cypress" />
 
 declare global {
+  // eslint-disable-next-line @typescript-eslint/no-namespace
   namespace Cypress {
     interface Chainable {
       /**
@@ -23,9 +24,15 @@ declare global {
       /**
        * Custom command to check accessibility
        * @param context - Optional context to check (default: entire page)
+       * @param options - Optional axe options
+       * @param violationCallback - Optional callback for violations
        * @example cy.checkA11y()
        */
-      checkA11y(context?: string | Node): Chainable<void>;
+      checkA11y(
+        context?: string | Node,
+        options?: Record<string, unknown>,
+        violationCallback?: (violations: unknown[]) => void
+      ): Chainable<void>;
 
       /**
        * Custom command to take a visual snapshot
@@ -50,10 +57,17 @@ Cypress.Commands.add('login', (userData: { username: string; password: string })
  * Custom command for accessibility testing
  * Requires cypress-axe to be installed and configured
  */
-Cypress.Commands.add('checkA11y', (context?: string | Node) => {
-  cy.injectAxe();
-  cy.checkA11y(context);
-});
+Cypress.Commands.add(
+  'checkA11y',
+  (
+    context?: string | Node,
+    options?: Record<string, unknown>,
+    violationCallback?: (violations: unknown[]) => void
+  ) => {
+    cy.injectAxe();
+    cy.checkA11y(context, options, violationCallback);
+  }
+);
 
 /**
  * Custom command for visual regression testing

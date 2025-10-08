@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-require-imports */
 const { merge } = require('mochawesome-merge');
 const generator = require('mochawesome-report-generator');
 const fs = require('fs');
@@ -9,7 +10,7 @@ const outputDir = path.join(__dirname, '../mochawesome-report');
 async function generateReport() {
   try {
     console.log('Merging mochawesome JSON reports...');
-    
+
     // Check if report directory exists
     if (!fs.existsSync(reportDir)) {
       console.error('Report directory does not exist:', reportDir);

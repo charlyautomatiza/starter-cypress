@@ -39,6 +39,7 @@ export default [
       "mochawesome-report/",
       "cypress/reports/",
       "*.config.js",
+      "cypress/e2e/0-internet-guinea/**/*.js",
     ],
   },
 ];

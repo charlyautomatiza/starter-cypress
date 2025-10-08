@@ -5,18 +5,22 @@ This guide helps you migrate from Cypress v10.0.2 to v15.3.0 with all the new fe
 ## Breaking Changes
 
 ### 1. Cypress Version
+
 - **Old**: Cypress 10.0.2
 - **New**: Cypress 15.3.0
 
 ### 2. Configuration File
+
 - **Old**: `cypress.config.js` (JavaScript)
 - **New**: `cypress.config.ts` (TypeScript)
 
 ### 3. Test Files
+
 - **Old**: `.js` files only
 - **New**: Both `.js` and `.ts` supported (TypeScript recommended)
 
 ### 4. Support Files
+
 - **Old**: `cypress/support/index.js`
 - **New**: `cypress/support/e2e.ts`
 
@@ -37,17 +41,19 @@ npm install
 If you have custom configuration in `cypress.config.js`, migrate it to `cypress.config.ts`:
 
 **Old (cypress.config.js):**
+
 ```javascript
-const { defineConfig } = require('cypress')
+const { defineConfig } = require('cypress');
 
 module.exports = defineConfig({
   e2e: {
     baseUrl: 'http://localhost:3000',
   },
-})
+});
 ```
 
 **New (cypress.config.ts):**
+
 ```typescript
 import { defineConfig } from 'cypress';
 
@@ -61,55 +67,59 @@ export default defineConfig({
 ### Step 3: Convert Tests to TypeScript (Optional but Recommended)
 
 **Old (.js):**
+
 ```javascript
 describe('Login Test', () => {
   it('should login', () => {
-    cy.visit('/login')
-    cy.get('#username').type('user')
-    cy.get('#password').type('pass')
-    cy.get('button').click()
-  })
-})
+    cy.visit('/login');
+    cy.get('#username').type('user');
+    cy.get('#password').type('pass');
+    cy.get('button').click();
+  });
+});
 ```
 
 **New (.ts with Page Object):**
+
 ```typescript
-import { LoginPage } from '../../pages/LoginPage'
+import { LoginPage } from '../../pages/LoginPage';
 
 describe('Login Test', () => {
   it('should login', () => {
-    const loginPage = new LoginPage()
-    loginPage.visit().login('user', 'pass')
-  })
-})
+    const loginPage = new LoginPage();
+    loginPage.visit().login('user', 'pass');
+  });
+});
 ```
 
 ### Step 4: Update Custom Commands
 
 **Old (commands.js):**
+
 ```javascript
 Cypress.Commands.add('login', (username, password) => {
-  cy.get('#username').type(username)
-  cy.get('#password').type(password)
-  cy.get('button').click()
-})
+  cy.get('#username').type(username);
+  cy.get('#password').type(password);
+  cy.get('button').click();
+});
 ```
 
 **New (commands.ts):**
+
 ```typescript
 declare global {
   namespace Cypress {
     interface Chainable {
-      login(username: string, password: string): Chainable<void>
+      login(username: string, password: string): Chainable<void>;
     }
   }
 }
 
 Cypress.Commands.add('login', (username: string, password: string) => {
-  cy.get('#username').type(username)
-  cy.get('#password').type(password)
-  cy.get('button').click()
-})
+  cy.get('#username').type(username);
+  cy.get('#password').type(password);
+  cy.get('button').click();
+});
 ```
 
 ### Step 5: Update npm Scripts
@@ -138,16 +148,16 @@ Create reusable page classes:
 
 ```typescript
 // cypress/pages/MyPage.ts
-import { BasePage } from './BasePage'
+import { BasePage } from './BasePage';
 
 export class MyPage extends BasePage {
   constructor() {
-    super('/my-page')
+    super('/my-page');
   }
 
   clickButton() {
-    cy.get('#myButton').click()
-    return this
+    cy.get('#myButton').click();
+    return this;
   }
 }
 ```
@@ -157,11 +167,9 @@ export class MyPage extends BasePage {
 ```typescript
 describe('API Tests', () => {
   it('should fetch data', () => {
-    cy.request('GET', 'https://api.example.com/data')
-      .its('status')
-      .should('eq', 200)
-  })
-})
+    cy.request('GET', 'https://api.example.com/data').its('status').should('eq', 200);
+  });
+});
 ```
 
 ### 3. Accessibility Testing
@@ -169,11 +177,11 @@ describe('API Tests', () => {
 ```typescript
 describe('Accessibility', () => {
   it('should have no violations', () => {
-    cy.visit('/page')
-    cy.injectAxe()
-    cy.checkA11y()
-  })
-})
+    cy.visit('/page');
+    cy.injectAxe();
+    cy.checkA11y();
+  });
+});
 ```
 
 ### 4. Visual Regression
@@ -181,10 +189,10 @@ describe('Accessibility', () => {
 ```typescript
 describe('Visual Tests', () => {
   it('should match snapshot', () => {
-    cy.visit('/page')
-    cy.matchImageSnapshot('page-snapshot')
-  })
-})
+    cy.visit('/page');
+    cy.matchImageSnapshot('page-snapshot');
+  });
+});
 ```
 
 ### 5. Environment Variables
@@ -197,8 +205,9 @@ CYPRESS_ENV=staging
 ```
 
 Access in tests:
+
 ```typescript
-const baseUrl = Cypress.env('baseUrl')
+const baseUrl = Cypress.env('baseUrl');
 ```
 
 ### 6. Advanced Reporting
