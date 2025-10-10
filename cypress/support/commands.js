@@ -28,10 +28,7 @@
  * Custom command to login to the application
  */
 Cypress.Commands.add('login', (userData) => {
-    cy.get('#username')
-        .type(userData.username);
-    cy.get('#password')
-        .type(userData.password);
-    cy.get('button[type="submit"]')
-        .click();
+  cy.get('#username').type(userData.username);
+  cy.get('#password').type(userData.password);
+  cy.get('button[type="submit"]').click();
 });

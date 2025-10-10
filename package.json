@@ -1,14 +1,28 @@
 {
   "name": "starter-cypress",
-  "version": "1.0.0",
-  "description": "",
+  "version": "2.0.0",
+  "description": "Modern Cypress starter project with TypeScript, advanced reporting, CI/CD, and comprehensive testing capabilities",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "cypress run",
     "cypress:open": "cypress open",
     "cypress:run:chrome": "cypress run --browser chrome",
     "cypress:run:headed": "cypress run --browser chrome --headed",
-    "cypress:run:ff": "cypress run --browser firefox"
+    "cypress:run:ff": "cypress run --browser firefox",
+    "cypress:run:edge": "cypress run --browser edge",
+    "cypress:run:electron": "cypress run --browser electron",
+    "cypress:run:all-headless": "npm run cypress:run:chrome && npm run cypress:run:ff && npm run cypress:run:edge",
+    "cypress:update": "npx cypress cache prune && npm update cypress",
+    "cypress:report": "node ./scripts/generate-report.js",
+    "browsers:update": "npx browserslist@latest --update-db",
+    "deps:check": "npm outdated",
+    "deps:update": "npm update",
+    "lint": "eslint . --ext .js,.ts",
+    "lint:fix": "eslint . --ext .js,.ts --fix",
+    "format": "prettier --write \"**/*.{js,ts,json,md}\"",
+    "format:check": "prettier --check \"**/*.{js,ts,json,md}\"",
+    "prepare": "husky install",
+    "typecheck": "tsc --noEmit"
   },
   "repository": {
     "type": "git",
@@ -21,6 +35,20 @@
   },
   "homepage": "https://github.com/charlyautomatiza/starter-cypress#readme",
   "devDependencies": {
-    "cypress": "^10.0.2"
+    "@eslint/js": "^9.37.0",
+    "@simonsmith/cypress-image-snapshot": "^10.0.2",
+    "@types/node": "^24.7.0",
+    "cypress": "^15.3.0",
+    "cypress-axe": "^1.5.0",
+    "dotenv": "^17.2.3",
+    "eslint": "^9.37.0",
+    "globals": "^15.14.0",
+    "husky": "^9.1.7",
+    "mochawesome": "^7.1.4",
+    "mochawesome-merge": "^4.3.0",
+    "mochawesome-report-generator": "^6.3.0",
+    "prettier": "^3.6.2",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.21.0"
   }
 }

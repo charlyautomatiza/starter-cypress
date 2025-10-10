@@ -1,0 +1,53 @@
+version: '3.8'
+
+services:
+  cypress:
+    build: .
+    container_name: cypress-tests
+    environment:
+      - CYPRESS_BASE_URL=${CYPRESS_BASE_URL:-https://the-internet.herokuapp.com}
+      - CYPRESS_VIDEO=${CYPRESS_VIDEO:-true}
+      - CYPRESS_SCREENSHOT_ON_RUN_FAILURE=${CYPRESS_SCREENSHOT_ON_RUN_FAILURE:-true}
+    volumes:
+      - ./cypress:/app/cypress
+      - ./cypress.config.ts:/app/cypress.config.ts
+      - ./cypress/videos:/app/cypress/videos
+      - ./cypress/screenshots:/app/cypress/screenshots
+      - ./cypress/reports:/app/cypress/reports
+    command: npm run cypress:run:chrome
+    networks:
+      - cypress-network
+
+  # Service for running tests on Firefox
+  cypress-firefox:
+    build: .
+    container_name: cypress-firefox
+    environment:
+      - CYPRESS_BASE_URL=${CYPRESS_BASE_URL:-https://the-internet.herokuapp.com}
+    volumes:
+      - ./cypress:/app/cypress
+      - ./cypress.config.ts:/app/cypress.config.ts
+      - ./cypress/videos:/app/cypress/videos
+      - ./cypress/screenshots:/app/cypress/screenshots
+    command: npm run cypress:run:ff
+    networks:
+      - cypress-network
+
+  # Service for running tests on Edge
+  cypress-edge:
+    build: .
+    container_name: cypress-edge
+    environment:
+      - CYPRESS_BASE_URL=${CYPRESS_BASE_URL:-https://the-internet.herokuapp.com}
+    volumes:
+      - ./cypress:/app/cypress
+      - ./cypress.config.ts:/app/cypress.config.ts
+      - ./cypress/videos:/app/cypress/videos
+      - ./cypress/screenshots:/app/cypress/screenshots
+    command: npm run cypress:run:edge
+    networks:
+      - cypress-network
+
+networks:
+  cypress-network:
+    driver: bridge
